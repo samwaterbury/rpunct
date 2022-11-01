@@ -33,7 +33,7 @@ List of punctuations we restore:
 **Below is a quick way to get up and running with the model.**
 1. First, install the package.
 ```bash
-pip install rpunct
+pip install git+https://github.com/samwaterbury/rpunct.git
 ```
 2. Sample python code.
 ```python
