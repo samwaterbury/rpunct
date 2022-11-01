@@ -5,7 +5,7 @@ __author__ = "Daulet N."
 __email__ = "daulet.nurmanbetov@gmail.com"
 
 import logging
-import torch
+from torch.cuda import is_available
 from langdetect import detect
 from simpletransformers.ner import NERModel
 
@@ -15,7 +15,7 @@ class RestorePuncts:
         self.wrds_per_pred = wrds_per_pred
         self.overlap_wrds = 30
         self.valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
-        self.model = NERModel("bert", "felflare/bert-restore-punctuation", labels=self.valid_labels, use_cuda=torch.cuda.is_available(),
+        self.model = NERModel("bert", "felflare/bert-restore-punctuation", labels=self.valid_labels, use_cuda=is_available(),
                               args={"silent": True, "max_seq_length": 512})
 
     def punctuate(self, text: str, lang:str=''):
